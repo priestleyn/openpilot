@@ -58,11 +58,6 @@ GLWindow::GLWindow(QWidget *parent) : QOpenGLWidget(parent) {
   timer = new QTimer(this);
   QObject::connect(timer, SIGNAL(timeout()), this, SLOT(timerUpdate()));
 
-#ifdef QCOM2
-  setFixedWidth(vwp_w);
-  setFixedHeight(vwp_h);
-#endif
-
   int result = read_param(&brightness_b, "BRIGHTNESS_B", true);
   result += read_param(&brightness_m, "BRIGHTNESS_M", true);
   if(result != 0) {

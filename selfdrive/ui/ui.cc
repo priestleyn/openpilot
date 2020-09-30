@@ -225,6 +225,16 @@ void update_sockets(UIState *s) {
     }
   }
 
+#ifdef QCOM2 // TODO: use this for QCOM too
+  if (sm.updated("sensorEvents")) {
+    for (auto sensor : sm["sensorEvents"].getSensorEvents()) {
+      if (sensor.which() == cereal::SensorEventData::LIGHT) {
+        s->light_sensor = sensor.getLight();
+      }
+    }
+  }
+#endif
+
   s->started = scene.thermal.getStarted() || scene.frontview;
 }
 
